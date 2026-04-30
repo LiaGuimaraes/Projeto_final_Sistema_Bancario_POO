@@ -1,0 +1,41 @@
+@startuml
+
+class Cliente{
+    - String cpf
+    - String nome
+    - Date dataNascimento
+    - String email
+    - String senha
+    + autenticar(senhaInformada: String): boolean
+    + adicionarConta(conta: Conta): void
+   
+
+}
+
+class Conta{
+    - Number numero
+    - Number saldo
+    - String historicoTransacoes
+    - String tipoConta
+    + sacar(valor)
+    + depositar(valor)
+    + transferir(valor, contaDestino)
+}
+
+class Transacao{
+    - String tipo
+    - Number valor
+    - Date dataTransacao
+    - Number contaOrigem
+    - Number contaDestino  
+    
+
+    
+
+}
+
+Cliente "1" -- "1..*" Conta : possui
+Conta "1" *-- "0..*" Transacao : contém
+
+
+@enduml
