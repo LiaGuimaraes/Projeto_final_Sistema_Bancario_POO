@@ -49,7 +49,7 @@ export class Transacao{
     ): Transacao[] {
         const dataAtual = new Date();
 
-        // 1. Gera a transação de DÉBITO para quem envia
+        
         const debito = new Transacao(
             "Transferência Enviada (Débito)", 
             valor, 
@@ -58,7 +58,7 @@ export class Transacao{
             contaDestino
         );
 
-        // 2. Gera a transação de CRÉDITO para quem recebe
+        
         const credito = new Transacao(
             "Transferência Recebida (Crédito)", 
             valor, 
@@ -67,7 +67,7 @@ export class Transacao{
             contaDestino
         );
 
-        // Retorna as duas para que o sistema as adicione nas respectivas contas
+        
         return [debito, credito];
     }
 }

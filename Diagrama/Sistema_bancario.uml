@@ -1,41 +1,57 @@
 @startuml
 
-class Cliente{
+abstract class Conta {
+    - String numero
+    - Number saldo
+    - Transacao[] historicoTransacoes
+    + sacar(valor: Number): void
+    + depositar(valor: Number): void
+    + transferir(valor: Number, contaDestino: Conta): void
+    + transferirViaPix(valor: Number, chave: String): void
+    + adicionarTransacao(t: Transacao): void
+}
+
+class Cliente {
     - String cpf
     - String nome
     - Date dataNascimento
     - String email
-    - String senha
+    - String #senha
     + autenticar(senhaInformada: String): boolean
     + adicionarConta(conta: Conta): void
-   
-
+    + registrarChavePix(tipo: String, conta: Conta): void
 }
 
-class Conta{
-    - Number numero
-    - Number saldo
-    - String historicoTransacoes
-    - String tipoConta
-    + sacar(valor)
-    + depositar(valor)
-    + transferir(valor, contaDestino)
+class ContaCorrente {
+    - Number limiteChequeEspecial
+    + sacar(valor: Number): void
 }
 
-class Transacao{
+class ContaPoupanca {
+    - Number taxaJuros
+    + renderJuros(): void
+}
+
+class Transacao {
     - String tipo
     - Number valor
-    - Date dataTransacao
-    - Number contaOrigem
-    - Number contaDestino  
-    
-
-    
-
+    - Date data
+    - String contaOrigem
+    - String contaDestino
+    {static} + criarTransferencia(origem, destino, valor): Transacao[]
 }
 
-Cliente "1" -- "1..*" Conta : possui
-Conta "1" *-- "0..*" Transacao : contém
+class SistemaPix <<static>> {
+    - {static} Map baseDeChaves
+    + {static} cadastrarChave(chave: String, conta: Conta): void
+    + {static} buscarConta(chave: String): Conta
+}
 
+' Relacionamentos
+Cliente "1" o-- "1..*" Conta : possui
+Conta "1" *-- "0..*" Transacao : histórico
+Conta <|-- ContaCorrente : herda
+Conta <|-- ContaPoupanca : herda
+SistemaPix ..> Conta : localiza
 
 @enduml

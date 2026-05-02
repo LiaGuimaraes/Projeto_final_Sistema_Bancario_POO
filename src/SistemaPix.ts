@@ -1,7 +1,7 @@
 import { Conta } from "./conta";
 
 export class SistemaPix {
-    // O Map associa a String (CPF ou Email) ao Objeto Conta
+    
     private static _baseDeChaves = new Map<string, Conta>();
 
     public static cadastrarChave(chave: string, conta: Conta): void {

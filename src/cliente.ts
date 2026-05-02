@@ -67,7 +67,7 @@ public adicionarConta(conta: Conta) {
 public registrarMinhasChaves(tipo: 'cpf' | 'email', conta: Conta) {
         const valorChave = tipo === 'cpf' ? this._cpf : this._email;
         
-        // Chamamos o SistemaPix para vincular esse dado a uma conta específica
+    
         SistemaPix.cadastrarChave(valorChave, conta);
     }
 
