@@ -1,7 +1,7 @@
 import { Cliente } from "./cliente";
 import { ContaCorrente } from "./contaCorrente";
 import { ContaPoupanca } from "./contaPoupanca";
-import { SistemaPix } from "./sistemaPix"; // Importando o seu SistemaPix
+import { SistemaPix } from "./SistemaPix";
 
 const Maria = new Cliente(
     "123.456.789-00",
