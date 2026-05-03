@@ -29,6 +29,4 @@ Instale as dependências:
 npm install
 
 Execute o projeto:
-Você pode rodar o arquivo principal (geralmente index.ts ou main.ts) usando o ts-node:
-
-npx ts-node src/main.ts
+npm start
